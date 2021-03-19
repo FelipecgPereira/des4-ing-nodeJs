@@ -1,0 +1,127 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Desafio 04",
+        "description": "NodeJs api for user registration",
+        "version": "1.0.0",
+        "contact":{
+            "email": "felipe@hotmail.com"
+        }
+    },
+    "paths":{
+        "/users":{
+            "post":{
+                "tags":["User"],
+                "summary":"Create a user",
+                "description":"Create a new user",
+                "requestBody":{
+                    "content":{
+                        "aplication/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties":{
+                                    "name":{
+                                        "type":"string"
+                                    },
+                                    "email":{
+                                        "type":"string"
+                                    }
+                                },
+                                "example":{
+                                    "name": "user name sample",
+                                    "email":"email@sample.com"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "201":{
+                        "description":"Created"
+                    },
+                    "400":{
+                        "description":"Bad Request"
+                    }
+                }
+    
+            },
+            "get":{
+                "tags":["User"],
+                "summary":"List all user",
+                "description":"admin user only",
+                "parameters":[
+                    {
+                        "name": "user_id",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                          "type": "string"
+                        }
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"success"
+                    },
+                    "400":{
+                        "description":"Bad Request"
+                    }
+                }
+    
+            }
+        },
+        "/users/{user_id}":{
+            "get":{
+                "tags":["User"],
+                "summary":"returns a specific user",
+                "description":"returns a specific user",
+                "parameters":[
+                    {
+                        "name": "user_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                          "type": "string"
+                        }
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"success"
+                    },
+                    "400":{
+                        "description":"Bad Request"
+                    }
+                }
+    
+            }
+        },
+        "/users/{user_id}/admin":{
+            "patch":{
+                "tags":["User"],
+                "summary":"returns a specific user",
+                "description":"returns a specific user",
+                "parameters":[
+                    {
+                        "name": "user_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                          "type": "string"
+                        }
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"success"
+                    },
+                    "404":{
+                        "description":"not found!"
+                    }
+                }
+    
+            }
+        }
+    }
+  
+}
